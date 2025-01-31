@@ -1,0 +1,34 @@
+def view_social_workouts():
+    # Create a new window to show social workouts
+    social_window = Window(app, title="Social - User Workouts", height=600, width=600)
+    Logo = Picture(social_window, image="images/logo.png")
+    
+    # Query the database to get all workout data
+    query = """
+    SELECT u.userfirstname, wd.workout_type, wd.distance, wd.duration 
+    FROM workout_data wd
+    JOIN user u ON wd.userid = u.userid
+    """
+    
+    conn = sqlite3.connect(database_file)
+    cursor = conn.cursor()
+    cursor.execute(query)
+    workouts = cursor.fetchall()
+    conn.close()
+    
+    # If there are no workouts in the database, display a message
+    if not workouts:
+        Text(social_window, text="No workouts found. Be the first to share!", size=16)
+        social_window.show()
+        return
+
+    # Display the list of workouts in the window
+    y_position = 50  # Start position for text
+    for workout in workouts:
+        firstname, workout_type, distance, duration = workout
+        Text(social_window, text=f"{firstname} has completed a {workout_type} with a total distance of {distance} km.")
+        y_position += 30  # Adjust for next line
+    
+    PushButton(social_window, text="Go Back", command=social_window.hide, align="bottom")
+    
+    social_window.show()
