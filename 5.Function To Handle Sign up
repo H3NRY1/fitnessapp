@@ -1,0 +1,41 @@
+# Function to handle sign-up
+def Sign_up_user(terms_agreed, cookies_agreed):
+    if not terms_agreed:  # Check if the terms and conditions checkbox is not checked
+        info("Error", "You must agree to the terms and conditions to sign up.")
+        return
+    
+    if not cookies_agreed:  # Check if the cookies consent checkbox is not checked
+        info("Error", "You must agree to the cookies policy.")
+        return
+
+    firstname = SFN_textbox.value
+    secondname = SSN_textbox.value
+    username = SUN_textbox.value
+    password = SPW_textbox.value
+    dob = DOB_textbox.value
+    email = email_textbox.value
+
+    if firstname == "":
+        info("Error", "You must enter a First Name.")
+    elif not firstname.isalpha():
+        info("Error", "Your first name cannot contain a number or symbol.")
+    elif secondname == "":
+        info("Error", "You must enter a surname.")
+    elif not secondname.isalpha():
+        info("Error", "Your surname cannot contain any numbers or symbols.")
+    elif username == "":
+        info("Error", "You must enter a username.")
+    elif password == "":
+        info("Error", "You must enter a password.")
+    elif len(password) < 8 or len(password) > 20:
+        info("Error", "Password must be between 8 and 20 characters.")
+    elif dob == "":
+        info("Error", "You must enter your date of birth.")
+    elif email == "":
+        info("Error", "You must enter an email address.")
+    elif "@" not in email:
+        info("Error", "Please enter a valid email address.")
+    else:
+        query = "INSERT INTO user (username, userpassword, userfirstname, usersurname, premium, dob, email_add) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        execute_sql(database_file, query, (username, password, firstname, secondname, 0, dob, email))
+        info("Success", "New user account created!")
