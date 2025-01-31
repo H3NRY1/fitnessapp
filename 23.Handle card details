@@ -1,0 +1,31 @@
+def handle_card_details(name_on_card, card_number, expiry_date, cvv):
+    global current_userid 
+    # Validate Name on Card (allowing letters, spaces, apostrophes, and hyphens)
+    if not re.match(r"^[A-Za-z\s'-]+$", name_on_card) or len(name_on_card.split()) < 2:
+        return info("Error", "Enter a valid name (first and last).")
+
+    # Validate Card Number (16 digits)
+    if not card_number.isdigit() or len(card_number) != 16:
+        return info("Error", "Card number must be 16 digits.")
+
+    # Validate Expiry Date (MM/YY format)
+    if not re.match(r"^(0[1-9]|1[0-2])\/([0-9]{2})$", expiry_date):
+        return info("Error", "Expiry date must be MM/YY.")
+
+    # Validate CVV (3 digits)
+    if not cvv.isdigit() or len(cvv) != 3:
+        return info("Error", "CVV must be 3 digits.")
+
+    # Save card details if validation passes
+    query = "INSERT INTO card_details (username, name_on_card, card_number, expiry_date, cvv, userid) VALUES (?, ?, ?, ?, ?, ?)"
+    execute_sql(database_file, query, (current_user, name_on_card, card_number, expiry_date, cvv, current_userid ))
+    
+    # Enable the Premium fitness and Social buttons after successful card details submission
+    Prem_fitness_Button.enabled = True
+    Prem_social_Button.enabled = True
+    # now update the usrer to premium
+    UpdatePrem = "UPDATE user SET Premium = '"+str(1) +"' WHERE UserID = '"+str(current_userid )+"'"
+    execute_sql(database_file, UpdatePrem)
+
+    
+    info("Success", "Card details saved successfully. Premium features are now unlocked.")
