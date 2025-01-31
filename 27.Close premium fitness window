@@ -1,0 +1,5 @@
+def close_premium_fitness_window():
+    global premium_fitness_window  
+    if premium_fitness_window:
+        premium_fitness_window.hide()  # This will hide the window
+        premium_fitness_window = None  #Reset the variable to None after hiding
