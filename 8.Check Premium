@@ -1,0 +1,6 @@
+def checkpremium():
+    global IsPremium
+    if IsPremium == True:
+        Prem_fitness_Button.enabled = True
+        Prem_social_Button.enabled = True
+
