@@ -1,0 +1,40 @@
+# Function to handle premium plans window
+def premium_plans():
+    
+    global premium_window  # Use a global variable to store the window reference
+    premium_window = Window(app, title="Premium Plans", height=800, width=800)
+
+    Logo = Picture(premium_window, image="images/logo.png")
+    
+    # Add content for the Premium plans
+    Text(premium_window, text="Choose your Premium Plan", size=20)
+    
+    # Example of premium plan options
+    Text(premium_window, text="Plan A: 9.99/month")
+
+    # TextBox fields for card details
+    Text(premium_window, text="Name on Card:")
+    name_on_card_textbox = TextBox(premium_window)
+
+    Text(premium_window, text="Card Number (16 digits):")
+    card_number_textbox = TextBox(premium_window)
+
+    Text(premium_window, text="Expiry Date (MM/YY):")
+    expiry_date_textbox = TextBox(premium_window)
+
+    Text(premium_window, text="CVV (3 digits):")
+    cvv_textbox = TextBox(premium_window)
+
+    # Submit button to validate and store details
+    PushButton(premium_window, text="Submit", command=lambda: handle_card_details(name_on_card_textbox.value, 
+                                                                                   card_number_textbox.value,
+                                                                                   expiry_date_textbox.value,
+                                                                                   cvv_textbox.value))
+
+    # Go Back button to close the premium plans window 
+    PushButton(premium_window, text="Go Back", command=close_premium_window, align="bottom")
+    
+    # Image for Premium plans
+    Picture(premium_window, image="images/prem.png")  # Add an image to the window
+
+    premium_window.show()
