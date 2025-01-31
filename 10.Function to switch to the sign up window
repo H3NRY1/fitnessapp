@@ -1,0 +1,4 @@
+# Function to switch to the signup window
+def switch_to_signup():
+    Login_window.hide()
+    Sign_window.show()
