@@ -1,0 +1,21 @@
+# Create the login window (hidden initially)
+# Login window
+Login_window = Window(app, title="Login Window", height=600)
+Logo = Picture(Login_window, image="images/logo.png")
+Login_window.hide()
+
+Text(Login_window, text="Enter your username.")
+LGU_textbox = TextBox(Login_window)
+
+Text(Login_window, text="Enter your password.")
+LGP_textbox = TextBox(Login_window, hide_text=True)
+
+# Terms and conditions checkbox for login
+terms_checkbox_login = CheckBox(Login_window, text="I agree to the terms and conditions", command=checkbox_ticked_terms)
+# Cookies consent checkbox for login
+cookies_checkbox_login = CheckBox(Login_window, text="I agree to the cookies policy", command=checkbox_ticked_cookies)
+
+# Log-in button with terms and conditions and cookies consent check
+PushButton(Login_window, text="Log in", command=lambda: Login_user(terms_checkbox_login.value, cookies_checkbox_login.value))
+PushButton(Login_window, text="Don't have an account? Sign up", command=switch_to_signup)
+PushButton(Login_window, text="Forgot your passowrd? Reset it here.", command = open_forgot_password_window)
