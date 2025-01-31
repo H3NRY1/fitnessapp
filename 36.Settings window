@@ -1,0 +1,26 @@
+# 
+Premium = Picture(Main_window, image="images/prem.png")  # ( ) Code to add a Prem image to the main window
+#
+#
+# SETTINGS WINDOW STARTS HERE
+#
+settings_window2 = Window(app, title="Settings Window", height=850)  # Create a main window for the application with a specific title and height
+Logo = Picture(settings_window2, image="images/logo.png")
+Premium = Picture(settings_window2, image="images/prem.png")  # ( ) Code to add a Logo image to the main window
+text_blank = Text(settings_window2, text="")  # Insert a blank text line (used for spacing)
+text_blank = Text(settings_window2, text="")
+PushButton(settings_window2, text="Increase Font Size", command=increase_font_size)
+PushButton(settings_window2, text="Decrease Font Size", command=decrease_font_size)
+PushButton(settings_window2, text="Enable Dark Mode", command=enable_dark_mode)
+PushButton(settings_window2, text="Enable Light Mode", command=enable_light_mode)
+PushButton(settings_window2, text="View Account Details", command=view_account_details)
+PushButton(settings_window2, text="Go Back", command=go_back)
+#
+#
+#
+#
+#
+Main_window.bg = "white"  # Set the background color of the main window
+Main_window.hide()  # Hide the main window 
+settings_window2.hide()
+
