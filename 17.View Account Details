@@ -1,0 +1,14 @@
+def view_account_details():
+        # Query the user's account details
+        query = "SELECT userfirstname, usersurname, username, dob, email_add FROM user WHERE username = ?"
+        conn = sqlite3.connect(database_file)
+        cursor = conn.cursor()
+        cursor.execute(query, (current_user,))
+        user_details = cursor.fetchone()
+        conn.close()
+
+        if user_details:
+            firstname, surname, username, dob, email = user_details
+            info("Account Details", f"First Name: {firstname}\nLast Name: {surname}\nUsername: {username}\nDate of Birth: {dob}\nEmail: {email}")  
+        else:
+            info("Error", "Could not retrieve account details.")
