@@ -1,0 +1,7 @@
+# Global variables
+font_size = 12  # Default font size
+dark_mode = False
+current_user = None  # To store the logged-in user's username
+free_fitness_window = None # Global variable to store the reference to the free_fitness_window
+IsPremium = False
+# Initially disable the buttons
