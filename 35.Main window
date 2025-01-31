@@ -1,0 +1,19 @@
+# MAIN WINDOW STARTS HERE
+#
+Main_window = Window(app, title="Main Window", height=800,width=700)  # Create a main window for the application with a specific title and height
+Premium = Picture(Main_window, image="images/logo.png")  # ( ) Code to add a Logo image to the main window
+text_blank = Text(Main_window, text="")  # Insert a blank text line (used for spacing)
+text_blank = Text(Main_window, text="Settings")  # Add a text label for "Settings"
+text_blank = Text(Main_window, text="")  # Insert another blank text line (spacing)
+text_blank = Text(Main_window, text="Please select an option below")  # Prompt the user to select an option
+text_blank = Text(Main_window, text="")  # Insert another blank text line (spacing)
+text_blank = Text(Main_window, text="")  # Insert another blank text line (spacing)
+create_button = PushButton(Main_window, text="Submit   ", command=None)  # Create a Submit button with no command assigned
+buttons_box = Box(Main_window, width="fill", align="bottom")  # Create a box at the bottom of the main window to hold buttons
+Settings_Button = PushButton(buttons_box, text="Settings            ", command=open_settings_window, align="left")  # Button for Settings aligned to the left
+Premium_Button = PushButton(buttons_box, text="Premium plans   ", command=premium_plans, align="left")  # Button for Premium plans aligned to the left
+Free_Button = PushButton(buttons_box, text="Free fitness training", command=freefitness, align="left")  # Button for Free fitness training aligned to the right
+Prem_fitness_Button = PushButton(buttons_box, text="Premium fitness training & advice", command=premium_fitness_advice, align="left")  # Button for Premium fitness training & advice aligned to the right
+Prem_fitness_Button.enabled = False  # Disable initially
+Prem_social_Button = PushButton(buttons_box, text="Social                    ", command=view_social_workouts, align="left")  # Button for Social aligned to the right
+Prem_social_Button.enabled = False  # Disable initially
