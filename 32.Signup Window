@@ -1,0 +1,36 @@
+# GUI WINDOWS START HERE
+#
+# Create windows
+app = App(title="Main Application Window", width=800, height=600)
+
+#free = Picture(free_fitness_window, image="images/free_fitness.png")  # ( ) Code to add a free image to the main window
+
+# Create the sign-up window
+Sign_window = Window(app, title="Signup Window", height=600)
+Logo = Picture(Sign_window, image="images/logo.png")
+Text(Sign_window, text="Enter your first name.")
+SFN_textbox = TextBox(Sign_window)
+
+Text(Sign_window, text="Enter your surname.")
+SSN_textbox = TextBox(Sign_window)
+
+Text(Sign_window, text="Enter your username.")
+SUN_textbox = TextBox(Sign_window)  
+
+Text(Sign_window, text="Enter your password.")
+SPW_textbox = TextBox(Sign_window, hide_text=True)
+
+Text(Sign_window, text="Enter your date of birth (DD/MM/YYYY).")
+DOB_textbox = TextBox(Sign_window)
+
+Text(Sign_window, text="Enter your email address.")
+email_textbox = TextBox(Sign_window)
+
+# Terms and conditions checkbox
+terms_checkbox = CheckBox(Sign_window, text="I agree to the terms and conditions", command=checkbox_ticked_terms)
+# Cookies consent checkbox
+cookies_checkbox = CheckBox(Sign_window, text="I agree to the cookies policy", command=checkbox_ticked_cookies)
+
+PushButton(Sign_window, text="Sign up", command=lambda: Sign_up_user(terms_checkbox.value, cookies_checkbox.value))
+
+PushButton(Sign_window, text="Already have an account? Log in", command=switch_to_login)
