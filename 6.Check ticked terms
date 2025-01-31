@@ -1,0 +1,2 @@
+def checkbox_ticked_terms():
+    info("Hello", "You agreed to the terms and conditions!")
