@@ -1,0 +1,4 @@
+def go_back():
+        settings_window2.hide()
+        Main_window.show()
+
