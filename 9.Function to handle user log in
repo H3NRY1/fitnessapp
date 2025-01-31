@@ -1,0 +1,39 @@
+# Function to handle user login
+# Function to handle user login
+def Login_user(terms_agreed, cookies_agreed):
+    if not terms_agreed:  # Check if the checkbox for terms and conditions is not checked
+        info("Error", "You must agree to the terms and conditions to log in.")
+        return
+    
+    if not cookies_agreed:  # Check if the checkbox for cookies consent is not checked
+        info("Error", "You must agree to the cookies policy.")
+        return
+
+    global current_user
+    global current_userid
+    global IsPremium
+    username = LGU_textbox.value 
+    password = LGP_textbox.value
+
+    if username == "" or password == "":
+        info("Error", "Please enter both a username and a password.")
+        return 
+
+    query = "SELECT * FROM user WHERE username = ? AND userpassword = ?"
+    conn = sqlite3.connect(database_file)
+    cursor = conn.cursor()
+    cursor.execute(query, (username, password))
+    user = cursor.fetchone()
+    if user and user[6] == 1:
+        IsPremium = True
+    current_userid = user[0] if user else None
+    conn.close()
+    
+    if user:
+        current_user = username  # Store the username of the logged-in user
+        info("Success", "Login successful!")
+        checkpremium()
+        Login_window.hide()
+        Main_window.show()
+    else:
+        info("Error", "Invalid username or password.")
