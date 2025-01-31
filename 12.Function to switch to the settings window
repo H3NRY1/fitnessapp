@@ -1,0 +1,3 @@
+def open_settings_window():
+   
+    settings_window2.show()
