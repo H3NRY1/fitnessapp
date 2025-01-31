@@ -1,0 +1,27 @@
+def save_workout_data(workout_type, distance, duration):
+    # Validate the inputs
+    if not workout_type.isalpha() or workout_type == "":
+        return info("Error", "Please enter a valid workout type (e.g., walk, run).")
+    
+    try:
+        distance = float(distance)
+        if distance <= 0:
+            return info("Error", "Distance must be a positive number.")
+    except ValueError:
+        return info("Error", "Please enter a valid number for distance.")
+    
+    try:
+        duration = int(duration)
+        if duration <= 0:
+            return info("Error", "Duration must be a positive number.")
+    except ValueError:
+        return info("Error", "Please enter a valid number for duration.")
+    
+    # Save the workout data to the database
+    query = "INSERT INTO workout_data (username, workout_type, distance, duration, userid) VALUES (?, ?, ?, ?, ?)"
+    execute_sql(database_file, query, (current_user, workout_type, distance, duration, current_userid))
+    
+    info("Success", "Your workout has been saved successfully!")
+    
+    # Close the window after saving the data
+    close_premium_fitness_window()
