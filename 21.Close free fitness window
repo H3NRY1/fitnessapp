@@ -1,0 +1,6 @@
+def close_free_fitness_window():
+    global free_fitness_window  
+    if free_fitness_window:
+        free_fitness_window.hide()  # This will hide the window
+        free_fitness_window = None  #Reset the variable to None after hiding
+
