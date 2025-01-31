@@ -1,0 +1,2 @@
+def checkbox_ticked_cookies():
+    info("Cookies", "You agreed to the cookies policy!")
