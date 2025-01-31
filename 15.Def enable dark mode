@@ -1,0 +1,6 @@
+def enable_dark_mode():
+        global dark_mode
+        dark_mode = True
+        app.bg = "black"
+        app.text_color = "white"
+        info("Mode", "Dark mode enabled.")
