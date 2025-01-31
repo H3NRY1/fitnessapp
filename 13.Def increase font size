@@ -1,0 +1,10 @@
+def increase_font_size():
+    #Change font size for all windows
+        global font_size
+        font_size = 16
+        Main_window.text_size = font_size
+        Sign_window.text_size = font_size
+        Login_window.text_size = font_size
+        settings_window2.text_size = font_size
+
+        info("Font Size", f"Font size set to {font_size}")
