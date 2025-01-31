@@ -1,0 +1,27 @@
+def premium_fitness_advice():
+    
+    global premium_fitness_window  # Use a global variable to store the window reference
+    premium_fitness_window = Window(app, title="Premium Fitness Training & Advice", height=600, width=600)
+
+    Logo = Picture(premium_fitness_window, image="images/logo.png")
+    
+    # Add content for the Premium Fitness Training form
+    Text(premium_fitness_window, text="Enter Workout Type (e.g., walk, run):", size=14)
+    workout_type_textbox = TextBox(premium_fitness_window)
+    
+    Text(premium_fitness_window, text="Enter Distance Covered (in KM):", size=14)
+    distance_textbox = TextBox(premium_fitness_window)
+    
+    Text(premium_fitness_window, text="Enter Duration of Workout (in minutes):", size=14)
+    duration_textbox = TextBox(premium_fitness_window)
+
+    # Submit button to save the workout data
+    PushButton(premium_fitness_window, text="Save Workout", command=lambda: save_workout_data(workout_type_textbox.value, 
+                                                                                           distance_textbox.value, 
+                                                                                           duration_textbox.value))
+    
+    # Go Back button to close the premium fitness window
+    PushButton(premium_fitness_window, text="Go Back", command=close_premium_fitness_window, align="bottom")
+    
+    premium_fitness_window.show()
+
