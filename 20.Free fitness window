@@ -1,0 +1,10 @@
+
+# Function to open the free fitness window
+def freefitness():
+    global free_fitness_window  # Use the global variable to store the window reference
+    
+    free_fitness_window = Window(app, title="Free Fitness Training", height=1000, width=1000)
+    Logo = Picture(free_fitness_window, image="images/logo.png")
+    Picture(free_fitness_window, image="images/free_fitness.png")  # Add an image to the window
+    PushButton(free_fitness_window, text="Go Back", command=close_free_fitness_window, align="bottom")
+    free_fitness_window.show()
