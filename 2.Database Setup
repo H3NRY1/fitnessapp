@@ -1,0 +1,39 @@
+##Database setup # # # # # # # # # # #
+database_file = 'fitness.db'
+sql = """
+CREATE TABLE IF NOT EXISTS user (
+    userid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    userpassword TEXT,
+    userfirstname TEXT,
+    usersurname TEXT,
+    email_add TEXT,
+    premium BOOLEAN,
+    dob TEXT
+);
+CREATE TABLE IF NOT EXISTS card_details (
+    cardid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    name_on_card TEXT,
+    card_number INT,
+    expiry_date TEXT,
+    cvv INT,
+    userid INT,
+    FOREIGN KEY (userid) REFERENCES user (userid)
+);
+
+CREATE TABLE IF NOT EXISTS workout_data (
+    workout_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    workout_type TEXT,
+    distance REAL,
+    duration INTEGER,
+    userid INTEGER,
+    FOREIGN KEY (userid) REFERENCES user (userid)
+);
+INSERT INTO user (username, userpassword, userfirstname, usersurname, email_add, premium, dob) VALUES ('userbob', 'bob123', 'Bob', 'Smith', 'email@.com', '0', '12/12/2000');
+INSERT INTO user (username, userpassword, userfirstname, usersurname, email_add, premium, dob) VALUES ('userdave', 'dave123', 'Dave', 'Jones', 'email@.com', '1', '12/12/2000');
+INSERT INTO workout_data (username, workout_type, distance, duration, userid) VALUES ('userbob', 'Ran', '74', '90', '1');
+INSERT INTO workout_data (username, workout_type, distance, duration, userid) VALUES ('userbob', 'Swam', '53', '8', '1');
+INSERT INTO workout_data (username, workout_type, distance, duration, userid) VALUES ('userbob', 'Walked', '5', '60', '1');
+INSERT INTO workout_data (username, workout_type, distance, duration, userid) VALUES ('userbob', 'Walked', '6.4', '78', '1');
