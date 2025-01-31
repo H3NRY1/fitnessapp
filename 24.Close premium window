@@ -1,0 +1,5 @@
+def close_premium_window():
+    global premium_window  # Ensure you're using the global variable
+    if premium_window:
+        premium_window.hide()  # This will hide the window
+        premium_window = None  # Reset the variable to None after hiding
