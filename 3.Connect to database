@@ -1,0 +1,32 @@
+# Delete the database
+# in case it already exists
+#
+if os.path.exists(database_file):
+  os.remove(database_file)
+#
+# Connect to the database
+#
+conn = sqlite3.connect(database_file)
+# Get a cursor pointing to the database
+cursor = conn.cursor()
+# Create the tables
+cursor.executescript(sql)
+# Commit to save everything
+conn.commit()
+# Close the connection to the database
+conn.close()
+
+# Create the database if it doesn't exist
+if not os.path.exists(database_file):
+    conn = sqlite3.connect(database_file)
+    cursor = conn.cursor()
+    cursor.executescript(sql)
+    conn.commit()
+    conn.close()
+
+def execute_sql(database, sql_statement, params=()):
+    with sqlite3.connect(database) as conn:
+        cur = conn.cursor()
+        cur.execute(sql_statement, params)
+        conn.commit()
+    return cur.lastrowid
