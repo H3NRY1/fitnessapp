@@ -1,0 +1,4 @@
+# Function to switch to the login window
+def switch_to_login():
+    Sign_window.hide()
+    Login_window.show()
